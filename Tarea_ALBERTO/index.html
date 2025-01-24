@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Películas y JSON</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Películas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Listado de Películas</h1>
+    <header>
+        <h1>Listado de Películas</h1>
+    </header>
 
-  <div id="contenedor-peliculas">
-    <!-- Aquí se cargarán las películas desde el JSON -->
-  </div>
+    <main>
+        <section id="filtros">
+            <label for="genero">Filtrar por género:</label>
+            <select id="genero">
+                <option value="todos">Todos</option>
+                <!-- Géneros dinámicos -->
+            </select>
+            <div id="accesos-rapidos">
+                <!-- Botones dinámicos -->
+            </div>
+        </section>
 
-  <button id="mostrar-titulos">Mostrar Solo Títulos</button>
-  <button id="filtrar-genero">Filtrar por Género</button>
+        <section id="listado-peliculas">
+            <ul id="peliculas">
+                <!-- Lista de películas -->
+            </ul>
+        </section>
+    </main>
 
-  <div id="contenedor-titulos">
-    <!-- Aquí se mostrarán solo los títulos -->
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

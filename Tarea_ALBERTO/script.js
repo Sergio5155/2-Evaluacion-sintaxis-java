@@ -1,69 +1,68 @@
 // Referencias a elementos del DOM
-const contenedorPeliculas = document.getElementById('contenedor-peliculas');
-const contenedorTitulos = document.getElementById('contenedor-titulos');
-const botonMostrarTitulos = document.getElementById('mostrar-titulos');
-const botonFiltrarGenero = document.getElementById('filtrar-genero');
+const listadoPeliculas = document.getElementById("peliculas");
+const generoSelect = document.getElementById("genero");
+const accesosRapidos = document.getElementById("accesos-rapidos");
 
-// Variable para almacenar las películas
+// Lista de películas
 let peliculas = [];
 
-// Cargar el JSON y mostrar las películas
-fetch('./peliculas.json') // Asegúrate de que la ruta sea correcta
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('No se pudo cargar el archivo JSON.');
-    }
-    return response.json();
-  })
-  .then((data) => {
-    peliculas = data; // Guardar las películas en la variable global
-    mostrarPeliculas(peliculas); // Mostrar todas las películas al cargar
-  })
-  .catch((error) => {
-    console.error('Error al cargar el JSON:', error);
-    contenedorPeliculas.innerHTML = '<p>Error al cargar las películas.</p>';
-  });
+// Cargar datos desde el JSON
+fetch("./peliculas.json")
+    .then(response => response.json())
+    .then(data => {
+        peliculas = data; // Guardamos las películas en la variable global
+        inicializar();   // Inicializamos la aplicación
+    })
+    .catch(error => console.error("Error al cargar las películas:", error));
 
-// Función para mostrar todas las películas
-function mostrarPeliculas(peliculas) {
-  let htmlContent = '';
-  peliculas.forEach((pelicula) => {
-    htmlContent += `<p><strong>${pelicula.titulo}</strong> - Año: ${pelicula.año}, Género: ${pelicula.genero}</p>`;
-  });
-  contenedorPeliculas.innerHTML = htmlContent;
+// Inicializar la aplicación
+function inicializar() {
+    cargarGeneros();
+    mostrarPeliculas(peliculas);
+    generarBotonesAcceso();
 }
 
-// Mostrar solo los títulos de las películas
-botonMostrarTitulos.addEventListener('click', () => {
-  if (!peliculas.length) return;
+// Cargar géneros únicos en el desplegable
+function cargarGeneros() {
+    const generos = [...new Set(peliculas.map(pelicula => pelicula.genero))]; // Extraer géneros únicos
+    generos.forEach(genero => {
+        const option = document.createElement("option");
+        option.value = genero;
+        option.textContent = genero;
+        generoSelect.appendChild(option);
+    });
 
-  let htmlContent = '';
-  peliculas.forEach((pelicula) => {
-    htmlContent += `<p>${pelicula.titulo}</p>`;
-  });
-  contenedorTitulos.innerHTML = htmlContent;
-});
+    // Escuchar cambios en el select
+    generoSelect.addEventListener("change", () => filtrarPeliculasPorGenero(generoSelect.value));
+}
+
+// Generar botones dinámicos para accesos rápidos
+function generarBotonesAcceso() {
+    const generos = [...new Set(peliculas.map(pelicula => pelicula.genero))];
+    generos.forEach(genero => {
+        const button = document.createElement("button");
+        button.textContent = genero;
+        button.addEventListener("click", () => filtrarPeliculasPorGenero(genero));
+        accesosRapidos.appendChild(button);
+    });
+}
+
+// Mostrar películas en pantalla
+function mostrarPeliculas(lista) {
+    listadoPeliculas.innerHTML = ""; // Limpiar el listado actual
+    lista.forEach(pelicula => {
+        const li = document.createElement("li");
+        li.textContent = `${pelicula.titulo} - Género: ${pelicula.genero}`;
+        listadoPeliculas.appendChild(li);
+    });
+}
 
 // Filtrar películas por género
-botonFiltrarGenero.addEventListener('click', () => {
-  if (!peliculas.length) return;
-
-  const generoIngresado = prompt('Ingrese el género que desea filtrar (e.g., Animación, Ciencia Ficción, Acción, Superhéroes):').trim();
-
-  if (!generoIngresado) {
-    alert('Debe ingresar un género válido.');
-    return;
-  }
-
-  const peliculasFiltradas = peliculas.filter((pelicula) => pelicula.genero.toLowerCase() === generoIngresado.toLowerCase());
-
-  if (peliculasFiltradas.length === 0) {
-    contenedorTitulos.innerHTML = `<p>No se encontraron películas del género "${generoIngresado}".</p>`;
-  } else {
-    let htmlContent = '';
-    peliculasFiltradas.forEach((pelicula) => {
-      htmlContent += `<p>${pelicula.titulo} - Año: ${pelicula.año}</p>`;
-    });
-    contenedorTitulos.innerHTML = htmlContent;
-  }
-});
+function filtrarPeliculasPorGenero(genero) {
+    if (genero === "todos") {
+        mostrarPeliculas(peliculas); // Mostrar todas las películas
+    } else {
+        const filtradas = peliculas.filter(pelicula => pelicula.genero === genero);
+        mostrarPeliculas(filtradas);
+    }
+}

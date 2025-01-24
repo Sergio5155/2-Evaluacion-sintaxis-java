@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#filtros {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#genero {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+#accesos-rapidos button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#accesos-rapidos button:hover {
+    background-color: #0056b3;
+}
+
+#peliculas {
+    list-style-type: none;
+    padding: 0;
+}
+
+#peliculas li {
+    background-color: white;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
