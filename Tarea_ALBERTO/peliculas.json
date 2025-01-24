@@ -1,0 +1,28 @@
+[
+    {
+      "titulo": "El Rey León",
+      "año": 1994,
+      "genero": "Animación"
+    },
+    {
+      "titulo": "Matrix",
+      "año": 1999,
+      "genero": "Ciencia Ficción"
+    },
+    {
+      "titulo": "Inception",
+      "año": 2010,
+      "genero": "Acción"
+    },
+    {
+      "titulo": "Avengers: Endgame",
+      "año": 2019,
+      "genero": "Superhéroes"
+    },
+    {
+      "titulo": "Toy Story",
+      "año": 1995,
+      "genero": "Animación"
+    }
+  ]
+  
