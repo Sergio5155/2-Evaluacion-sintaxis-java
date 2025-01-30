@@ -1,68 +1,85 @@
-// Referencias a elementos del DOM
-const listadoPeliculas = document.getElementById("peliculas");
-const generoSelect = document.getElementById("genero");
-const accesosRapidos = document.getElementById("accesos-rapidos");
-
-// Lista de películas
 let peliculas = [];
+let peliculasFiltradas = [];
 
-// Cargar datos desde el JSON
-fetch("./peliculas.json")
-    .then(response => response.json())
-    .then(data => {
-        peliculas = data; // Guardamos las películas en la variable global
-        inicializar();   // Inicializamos la aplicación
-    })
-    .catch(error => console.error("Error al cargar las películas:", error));
+// Referencias DOM
+const searchInput = document.getElementById('searchInput');
+const generoSelect = document.getElementById('genero');
+const featuredMovies = document.getElementById('featured-movies');
+const allMovies = document.getElementById('all-movies');
+const navbar = document.querySelector('.navbar');
+const heroTitle = document.getElementById('hero-title');
+const heroDescription = document.getElementById('hero-description');
 
-// Inicializar la aplicación
-function inicializar() {
-    cargarGeneros();
-    mostrarPeliculas(peliculas);
-    generarBotonesAcceso();
+// Cargar datos
+async function cargarPeliculas() {
+    try {
+        const response = await fetch('./peliculas.json');
+        const data = await response.json();
+        peliculas = data.peliculas;
+        peliculasFiltradas = peliculas;
+        inicializar();
+    } catch (error) {
+        console.error('Error al cargar las películas:', error);
+        // Mostrar mensaje de error al usuario
+        allMovies.innerHTML = '<div class="error-message">Error al cargar las películas. Por favor, intenta más tarde.</div>';
+    }
 }
 
-// Cargar géneros únicos en el desplegable
+// Inicialización
+function inicializar() {
+    cargarGeneros();
+    mostrarPeliculas();
+    setupEventListeners();
+    actualizarHero();
+}
+
+// Cargar géneros únicos
 function cargarGeneros() {
-    const generos = [...new Set(peliculas.map(pelicula => pelicula.genero))]; // Extraer géneros únicos
+    const generos = [...new Set(peliculas.map(pelicula => pelicula.genero))].sort();
     generos.forEach(genero => {
-        const option = document.createElement("option");
+        const option = document.createElement('option');
         option.value = genero;
         option.textContent = genero;
         generoSelect.appendChild(option);
     });
-
-    // Escuchar cambios en el select
-    generoSelect.addEventListener("change", () => filtrarPeliculasPorGenero(generoSelect.value));
 }
 
-// Generar botones dinámicos para accesos rápidos
-function generarBotonesAcceso() {
-    const generos = [...new Set(peliculas.map(pelicula => pelicula.genero))];
-    generos.forEach(genero => {
-        const button = document.createElement("button");
-        button.textContent = genero;
-        button.addEventListener("click", () => filtrarPeliculasPorGenero(genero));
-        accesosRapidos.appendChild(button);
+// Crear tarjeta de película
+function crearTarjetaPelicula(pelicula) {
+    const puntuacionEstrellas = '⭐'.repeat(Math.round(pelicula.puntuacion));
+    
+    return `
+        <div class="movie-card" data-id="${pelicula.id}">
+            <img src="${pelicula.imagen}" alt="${pelicula.titulo}" 
+                 onerror="this.src='/api/placeholder/300/450'">
+            <div class="movie-info">
+                <h3>${pelicula.titulo}</h3>
+                <p>${pelicula.genero} • ${pelicula.año}</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i> ${pelicula.puntuacion}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Mostrar películas
+function mostrarPeliculas() {
+    // Mostrar películas destacadas
+    const destacadas = peliculasFiltradas.filter(p => p.destacada);
+    featuredMovies.innerHTML = destacadas.map(crearTarjetaPelicula).join('');
+
+    // Mostrar todas las películas
+    allMovies.innerHTML = peliculasFiltradas.map(crearTarjetaPelicula).join('');
+
+    // Agregar event listeners a las tarjetas
+    document.querySelectorAll('.movie-card').forEach(card => {
+        card.addEventListener('click', () => mostrarDetallePelicula(card.dataset.id));
     });
 }
 
-// Mostrar películas en pantalla
-function mostrarPeliculas(lista) {
-    listadoPeliculas.innerHTML = ""; // Limpiar el listado actual
-    lista.forEach(pelicula => {
-        const li = document.createElement("li");
-        li.textContent = `${pelicula.titulo} - Género: ${pelicula.genero}`;
-        listadoPeliculas.appendChild(li);
-    });
-}
-
-// Filtrar películas por género
-function filtrarPeliculasPorGenero(genero) {
-    if (genero === "todos") {
-        mostrarPeliculas(peliculas); // Mostrar todas las películas
-    } else {
-        const filtradas = peliculas.filter(pelicula => pelicula.genero === genero);
-        mostrarPeliculas(filtradas);
-    }
-}
+// Mostrar detalle de película
+function mostrarDetallePelicula(id) {
+    const pelicula = peliculas.find(p => p.id === parseInt(id));
+    if (pelicula) {
+        actualizarHero(pelicula);

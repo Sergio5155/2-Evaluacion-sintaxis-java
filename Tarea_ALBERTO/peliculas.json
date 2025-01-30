@@ -1,9 +1,104 @@
-[
-    { "titulo": "El Rey León", "genero": "Animación" },
-    { "titulo": "Avengers: Endgame", "genero": "Acción" },
-    { "titulo": "Titanic", "genero": "Romance" },
-    { "titulo": "El Conjuro", "genero": "Terror" },
-    { "titulo": "Shrek", "genero": "Animación" },
-    { "titulo": "John Wick", "genero": "Acción" },
-    { "titulo": "Matrix", "genero": "Ciencia Ficción" }
-]
+{
+    "peliculas": [
+      {
+        "id": 1,
+        "titulo": "El Rey León",
+        "genero": "Animación",
+        "año": 2019,
+        "descripcion": "Simba debe asumir su rol como legítimo rey de la sabana africana tras la muerte de su padre.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.8,
+        "destacada": true
+      },
+      {
+        "id": 2,
+        "titulo": "Avengers: Endgame",
+        "genero": "Acción",
+        "año": 2019,
+        "descripcion": "Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.9,
+        "destacada": true
+      },
+      {
+        "id": 3,
+        "titulo": "Inception",
+        "genero": "Ciencia Ficción",
+        "año": 2010,
+        "descripcion": "Un ladrón con la rara habilidad de 'robar' secretos del subconsciente durante el estado del sueño.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.8,
+        "destacada": false
+      },
+      {
+        "id": 4,
+        "titulo": "El Conjuro",
+        "genero": "Terror",
+        "año": 2013,
+        "descripcion": "Paranormales Ed y Lorraine Warren trabajan para ayudar a una familia aterrorizada por una presencia oscura.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.5,
+        "destacada": false
+      },
+      {
+        "id": 5,
+        "titulo": "La La Land",
+        "genero": "Romance",
+        "año": 2016,
+        "descripcion": "Una aspirante a actriz y un músico de jazz se enamoran mientras persiguen sus sueños en Los Ángeles.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.7,
+        "destacada": true
+      },
+      {
+        "id": 6,
+        "titulo": "Interestelar",
+        "genero": "Ciencia Ficción",
+        "año": 2014,
+        "descripcion": "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.9,
+        "destacada": true
+      },
+      {
+        "id": 7,
+        "titulo": "Jurassic World",
+        "genero": "Acción",
+        "año": 2015,
+        "descripcion": "Un nuevo parque temático de dinosaurios se convierte en una pesadilla cuando uno de sus experimentos se sale de control.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.3,
+        "destacada": false
+      },
+      {
+        "id": 8,
+        "titulo": "El Padrino",
+        "genero": "Drama",
+        "año": 1972,
+        "descripcion": "La historia de la familia Corleone, una de las más poderosas familias de la mafia italiana en Nueva York.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.9,
+        "destacada": true
+      },
+      {
+        "id": 9,
+        "titulo": "Spider-Man: No Way Home",
+        "genero": "Acción",
+        "año": 2021,
+        "descripcion": "Peter Parker debe enfrentarse a villanos de otros universos cuando un hechizo sale mal.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.7,
+        "destacada": true
+      },
+      {
+        "id": 10,
+        "titulo": "El Señor de los Anillos",
+        "genero": "Fantasía",
+        "año": 2001,
+        "descripcion": "Un hobbit emprende un viaje épico para destruir un anillo mágico y salvar la Tierra Media.",
+        "imagen": "/api/placeholder/300/450",
+        "puntuacion": 4.9,
+        "destacada": true
+      }
+    ]
+  }
