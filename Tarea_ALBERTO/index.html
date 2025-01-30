@@ -37,93 +37,30 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Featured Movies Section -->
         <section class="featured-section">
             <h2>Películas Destacadas</h2>
-            <div class="movie-slider" id="featured-movies">
-                <!-- Las películas destacadas se cargarán aquí dinámicamente -->
-            </div>
+            <div class="movie-slider" id="featured-movies"></div>
         </section>
 
-        <!-- All Movies Section -->
         <section class="movies-section">
             <h2>Todas las Películas</h2>
-            <div class="movie-grid" id="all-movies">
-                <!-- Todas las películas se cargarán aquí dinámicamente -->
-            </div>
+            <div class="movie-grid" id="all-movies"></div>
         </section>
 
-        <!-- Genres Section -->
         <section class="genres-section">
             <h2>Géneros</h2>
-            <div class="genre-grid">
-                <div class="genre-card" data-genre="Acción">
-                    <h3>Acción</h3>
-                </div>
-                <div class="genre-card" data-genre="Animación">
-                    <h3>Animación</h3>
-                </div>
-                <div class="genre-card" data-genre="Ciencia Ficción">
-                    <h3>Ciencia Ficción</h3>
-                </div>
-                <div class="genre-card" data-genre="Drama">
-                    <h3>Drama</h3>
-                </div>
-                <div class="genre-card" data-genre="Terror">
-                    <h3>Terror</h3>
-                </div>
-                <div class="genre-card" data-genre="Romance">
-                    <h3>Romance</h3>
-                </div>
-            </div>
+            <div class="genre-grid"></div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>NetflixClone</h3>
-                <p>© 2025 NetflixClone. Todos los derechos reservados.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Navegación</h4>
-                <ul>
-                    <li>Inicio</li>
-                    <li>Películas</li>
-                    <li>Géneros</li>
-                    <li>Mi Lista</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
+            <p>© 2025 NetflixClone. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="script.js"></script>
-
-    <!-- Inicialización -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            cargarPeliculas();
-            
-            // Cambiar background del navbar al hacer scroll
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    document.querySelector('.navbar').classList.add('scrolled');
-                } else {
-                    document.querySelector('.navbar').classList.remove('scrolled');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
