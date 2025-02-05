@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Películas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Buscar Películas</h1>
+    
+    <div class="search-bar">
+        <div>
+            <label for="titulo">Buscar por Título:</label>
+            <input type="text" id="titulo" placeholder="Ejemplo: Star Wars">
+            <button onclick="buscarPorTitulo()">Buscar</button>
+        </div>
+        
+        <div>
+            <label for="genero">Buscar por Género:</label>
+            <input type="text" id="genero" placeholder="Ejemplo: Ciencia ficción">
+            <button onclick="buscarPorGenero()">Buscar</button>
+        </div>
+        
+        <div>
+            <label for="tematica">Buscar por Temática:</label>
+            <input type="text" id="tematica" placeholder="Ejemplo: Aventura">
+            <button onclick="buscarPorTematica()">Buscar</button>
+        </div>
+    </div>
+    
+    <h2>Resultados:</h2>
+    <div id="moviesContainer" class="movies-container"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
